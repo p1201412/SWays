@@ -8,9 +8,9 @@
 </head>
 <body>
 <center>
-<h1>Add Article</h1>
+<h1>Add User</h1>
 
-<c:url var="viewUsrUrl" value="/users.html" />
+<c:url var="viewUsrUrl" value="${path}/users.html" />
 
 <a href="${viewUsrUrl}">Show All Users</a>
 
