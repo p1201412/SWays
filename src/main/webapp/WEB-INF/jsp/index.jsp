@@ -19,10 +19,11 @@ pageEncoding="ISO-8859-1"%>
     <center>
     <h1>Welcome on SilentWays' website</h1>
     <br/>
-    <a href="users.html"><button type="button" class="btn btn-primary btn-lg">Manage Users</button></a><br/>
-    <a href="#"><button type="button" class="btn btn-primary btn-lg">Login Page</button></a>
+    <a href="$/users.html"><button type="button" class="btn btn-primary btn-lg">Manage Users</button></a><br/><br/>
+    <a href="/login.html"><button type="button" class="btn btn-primary btn-lg">Login Page</button></a>
     </center>
 </div>
+<p>Don't forget: ${userId}</p>
 </body>
 
 </html>
