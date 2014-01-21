@@ -42,9 +42,6 @@ public class User
     
     @Transient
     private String confirmMailAddress;
-    
-    @Column(name="userRights")
-    private int rights;
 
     public String getPseudo() {
         return pseudo;
@@ -109,14 +106,6 @@ public class User
 
     public void setConfirmMailAddress(String confirmMailAddress) {
         this.confirmMailAddress = confirmMailAddress;
-    }
-
-    public int getRights() {
-        return rights;
-    }
-
-    public void setRights(int rights) {
-        this.rights = rights;
     }
     
     public void setId(int id)

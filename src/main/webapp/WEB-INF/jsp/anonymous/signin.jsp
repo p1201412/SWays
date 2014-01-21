@@ -8,17 +8,18 @@
 </head>
 <body>
 <center>
-<h1>Add User</h1>
-
-<c:url var="viewUsrUrl" value="${path}/users.html" />
-
-<a href="${viewUsrUrl}">Show All Users</a>
+<h1>Sign In</h1>
 
 <br />
-
+<c:if test="${not empty error}">
+		<div class="alert alert-danger">
+			Your sign in attempt was not successful, try again.<br /> Caused by :
+			${error}
+		</div>
+	</c:if>
 <br />
 
-<c:url var="saveUserUrl" value="/users/save.html" />
+<c:url var="saveUserUrl" value="signin.html" />
 <form:form role="form"  modelAttribute="user" method="POST" action="${saveUserUrl}">
 
 <div class="form-group">
@@ -58,7 +59,7 @@
 
 <br />
 
-<button type="submit" class="btn btn-default">Add User</button>
+<button type="submit" class="btn btn-default">Sign In</button>
 
 </form:form>
 </center>

@@ -61,4 +61,9 @@ public class UserServiceImpl implements UserService
     {
         userDao.updateUser(user);
     }
+    
+    public void setRoleUser(int userId, String userRole)
+    {
+        userDao.setRoleUser(userId, userRole);
+    }
 }

@@ -1,8 +1,11 @@
 package com.dao;
 
 import com.entities.User;
+import com.entities.UserRole;
 
 import java.util.List;
+import org.hibernate.Query;
+import org.hibernate.SQLQuery;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -64,16 +67,23 @@ public class UserDaoImpl implements UserDao
   {
       Session session = sessionFactory.getCurrentSession();
       session.save(user);
+
+      SQLQuery tempQuery = session.createSQLQuery("INSERT INTO user_role (userId, userRole) VALUES ("+user.getId()+", 'ROLE_USER')");
+      tempQuery.executeUpdate();
   }
   
   @Override
   public void deleteUser(int id)
   {
-      User user = (User) sessionFactory.getCurrentSession().load(
-                User.class, id);
-        if (null != user) {
-            sessionFactory.getCurrentSession().delete(user);
-        }
+      Session session = sessionFactory.getCurrentSession();
+      User user = (User) sessionFactory.getCurrentSession().load(User.class, id);
+      if (null != user) 
+      {
+         session.delete(user);
+
+         Query query = session.createSQLQuery("delete from user_role where userId = "+ user.getId());
+         query.executeUpdate();
+      }
   }
   
   @Override
@@ -82,4 +92,12 @@ public class UserDaoImpl implements UserDao
         user.setRegistrationDate(user.getRegistrationDate());
         sessionFactory.getCurrentSession().update(user);
     }
+  
+  @Override
+  public void setRoleUser(int userId, String userRole)
+  {
+      Session session = sessionFactory.getCurrentSession();
+      Query query = session.createSQLQuery("update user_role set userRole = " + userRole + "where userId = " + userId);
+      query.executeUpdate();
+  }
 }

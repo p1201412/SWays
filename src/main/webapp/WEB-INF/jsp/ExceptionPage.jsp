@@ -9,7 +9,7 @@
 <h1>Spring MVC Exception Handling</h1><br/>
 
 <div class="alert alert-danger"><h3>${exception.exceptionMsg}</h3></div>
-<a href="/SW6/"><button type="button" class="btn btn-primary btn-lg">Home</button></a>
+<a href="/index"><button type="button" class="btn btn-primary btn-lg">Home</button></a>
 </center>
 </body>
 </html>

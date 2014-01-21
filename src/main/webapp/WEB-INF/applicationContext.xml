@@ -2,10 +2,12 @@
 <beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:beans="http://www.springframework.org/schema/beans"
   xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+  xmlns:security="http://www.springframework.org/schema/security"
   xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
     http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
     http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
-    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
+    http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd">
  
   <!-- Enable @Controller annotation support -->
   <mvc:annotation-driven />
@@ -66,4 +68,33 @@
       </props>
    </property>
 </bean>
+
+<security:http auto-config="true">
+    <security:form-login login-page="/login" default-target-url="/index"
+			authentication-failure-url="/loginfailed" />
+    <security:intercept-url pattern="/user/**" access="ROLE_USER" />
+    <security:intercept-url pattern="/admin/**" access="ROLE_ADMIN" />
+    <security:intercept-url pattern="/login" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+    <security:logout logout-success-url="/index" />
+</security:http>
+  
+
+<security:authentication-manager>
+    <security:authentication-provider>
+            <security:jdbc-user-service data-source-ref="myDataSource"
+ 
+		   users-by-username-query="
+		      select userPseudo,userPassword, enabled
+		      from user where userPseudo=?" 
+ 
+		   authorities-by-username-query="
+		      select u.userPseudo, ur.userRole from user u, user_role ur 
+		      where u.userId = ur.userId and u.userPseudo =?"
+             />
+    </security:authentication-provider>
+</security:authentication-manager>
+
+
+
+
 </beans>

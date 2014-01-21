@@ -11,9 +11,7 @@
 
 <body>
 <center>
-<h1>List of Users</h1>
-
-<a href="users/add.html"><button type="button" class="btn btn-primary">Add User</button></a><br/><br/>
+    <h1>List of Users</h1>
 
 <c:if test="${!empty users}">
 
@@ -37,8 +35,6 @@
 
 <th>Mail</th>
 
-<th>Rights</th>
-
 <th>Actions</th>
 
 <th></th>
@@ -57,11 +53,10 @@
 <th><c:out value="${user.registrationDate}"/></th>
 <th><c:out value="${user.points}"/></th>
 <th><c:out value="${user.mailAddress}"/></th>
-<th><c:out value="${user.rights}"/></th>
 
-<th><a href="users/delete/${user.id}/"><button type="button" class="btn btn-default">Delete</button></a></th>
+<th><a href="deleteUser/${user.id}/"><button type="button" class="btn btn-default">Delete</button></a></th>
 
-<th><a href="users/updateUser/${user.id}/"><button type="button" class="btn btn-default">Update</button></a></th>
+<th><a href="updateUser/${user.id}/"><button type="button" class="btn btn-default">Update</button></a></th>
 
 </tr>
 
@@ -70,6 +65,10 @@
 </table>
 
 </c:if>
+<br/><br/>
+<a href="index.html" ><button type="button" class="btn btn-primary btn-lg">Home</button></a><br/><br/>
+<br/>
+<a href="<c:url value="/j_spring_security_logout" />" ><button type="button" class="btn btn-danger btn-lg">Logout</button></a><br/><br/>
 </center>
 </body>
 

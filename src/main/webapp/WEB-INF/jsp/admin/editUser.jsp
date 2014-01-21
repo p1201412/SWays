@@ -1,5 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 
 <!DOCTYPE html>
@@ -12,12 +12,12 @@
     <body>
     <center>
         
-<c:url var="viewUsrUrl" value="/users.html" />
+<c:url var="viewUsrUrl" value="/admin/viewUser.html" />
 <a href="${viewUsrUrl}">Show All Users</a>
 
 
 <h1>Update User</h1>
-<c:url var="UpdateUserUrl" value="/users/updateUser/${user.id}/" />
+<c:url var="UpdateUserUrl" value="/admin/updateUser/${user.id}/" />
 <form:form role="form" modelAttribute="user" method="POST" action="${UpdateUserUrl}">
 <form:input type="hidden" path="registrationDate" value="${user.registrationDate}"/>
 <form:input type="hidden" path="points" value="${user.points}"/>
@@ -58,13 +58,6 @@
 <form:input path="confirmMailAddress" />
 </div>
 
-<form:label path="rights">Droits</form:label><br/>
-<form:radiobutton path="rights" value="0"/>Utilisateur 
-<br/>
-<form:radiobutton path="rights" value="50"/>Modérateur
-<br/>
-<form:radiobutton path="rights" value="100"/>Webmaster
-<br/>
 
 <br />
 <br/>
@@ -72,6 +65,8 @@
 <button type="submit" class="btn btn-default">Update User</button>
 
 </form:form>
+<br/>
+
 </center>
     </body>
 </html>
