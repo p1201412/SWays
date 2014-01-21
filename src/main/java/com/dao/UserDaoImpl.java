@@ -99,6 +99,21 @@ public class UserDaoImpl implements UserDao
   @Override
   public void updateUser(User user)
     {
+         // pour hacher avec SHA1
+        ShaPasswordEncoder encoder = new ShaPasswordEncoder();
+        /// Hachage du mot de passe avec un gain de sel vari
+        String hashedPassword = encoder.encodePassword(user.getPassword(), user.getPseudo());
+
+        //Affecter le mot de passe haché
+        user.setPassword(hashedPassword);
+        
+        user.setRegistrationDate(user.getRegistrationDate());
+        sessionFactory.getCurrentSession().update(user);
+    }
+  
+  @Override
+  public void updateUserByAdmin(User user)
+    {
         user.setRegistrationDate(user.getRegistrationDate());
         sessionFactory.getCurrentSession().update(user);
     }

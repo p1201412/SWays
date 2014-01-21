@@ -53,7 +53,7 @@ public class AdminController
     }
     
     //Formulaire de MAJ d'utilisateur
-    @RequestMapping(value="/updateUser/{userId}/", method=RequestMethod.GET)
+    @RequestMapping(value="/updateUserByAdmin/{userId}/", method=RequestMethod.GET)
     public ModelAndView edit(@PathVariable Integer userId)
     {
         User user = userService.getUser(userId);
@@ -62,7 +62,7 @@ public class AdminController
     }
     
     //MAJ d'utilisateur
-    @RequestMapping(value="/updateUser/{userId}/", method=RequestMethod.POST)
+    @RequestMapping(value="/updateUserByAdmin/{userId}/", method=RequestMethod.POST)
     public String update(@ModelAttribute("user") User user, BindingResult result, @PathVariable Integer userId)
     {
         //Utilisateur avec le meme id
@@ -74,7 +74,7 @@ public class AdminController
         User uSameEmail = userService.getUserByMail(user.getMailAddress());
         
         UserMethod methods = new UserMethod();
-        String msg = methods.canUpdate(user, uSameId, uSamePseudo, uSameEmail);
+        String msg = methods.canUpdateByAdmin(user, uSameId, uSamePseudo, uSameEmail);
         
         
         if(msg.equals(""))

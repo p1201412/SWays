@@ -11,21 +11,29 @@
     </head>
     <body>
     <center>
-        
-<c:url var="viewUsrUrl" value="/admin/viewUser.html" />
-
-
-<h1>Update ${user.pseudo}</h1>
-<c:url var="UpdateUserUrl" value="/admin/updateUserByAdmin/${user.id}/" />
+       
+<c:url var="backUrl" value="/user/index.html" />
+<h1>Update your account</h1>
+<c:url var="UpdateUserUrl" value="/user/updateUser/${user.id}/" />
 <form:form role="form" modelAttribute="user" method="POST" action="${UpdateUserUrl}">
 <form:input type="hidden" path="registrationDate" value="${user.registrationDate}"/>
 <form:input type="hidden" path="points" value="${user.points}"/>
-<form:input type="hidden" path="password" value="${user.password}"/>
 <div class="form-group">
 <form:label path="pseudo">Pseudo</form:label><br/>
     
 <form:input path="pseudo" />
 </div>
+    
+<div class="form-group">
+<form:label path="password">Password</form:label><br/>
+<form:input path="password" value=" " type="password"/>
+</div>
+
+<div class="form-group">
+<form:label path="confirmPassword">Confirm password</form:label><br/>
+<form:input path="confirmPassword"  type="password"/>
+</div>
+
     
 <div class="form-group">
 <form:label path="name">Name</form:label><br/>
@@ -54,7 +62,7 @@
 <button type="submit" class="btn btn-default">Update User</button><br/><br/>
 
 </form:form>
-<a href="${viewUsrUrl}"><button class="btn btn-primary">Go Back</button></a>
+<a href="${backUrl}"><button class="btn btn-primary">Go Back</button></a>
 <br/>
 
 </center>

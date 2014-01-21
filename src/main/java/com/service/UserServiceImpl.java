@@ -62,6 +62,13 @@ public class UserServiceImpl implements UserService
         userDao.updateUser(user);
     }
     
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+    @Override
+    public void updateUserByAdmin(User user)
+    {
+        userDao.updateUserByAdmin(user);
+    }
+    
     public void setRoleUser(int userId, String userRole)
     {
         userDao.setRoleUser(userId, userRole);

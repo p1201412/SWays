@@ -56,7 +56,7 @@
 
 <th><a href="deleteUser/${user.id}/"><button type="button" class="btn btn-default">Delete</button></a></th>
 
-<th><a href="updateUser/${user.id}/"><button type="button" class="btn btn-default">Update</button></a></th>
+<th><a href="updateUserByAdmin/${user.id}/"><button type="button" class="btn btn-default">Update</button></a></th>
 
 </tr>
 

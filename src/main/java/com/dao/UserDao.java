@@ -24,6 +24,8 @@ public interface UserDao
     
     public void updateUser(User user);
     
+    public void updateUserByAdmin(User user);
+    
     public void setRoleUser(int userId, String userRole);
     
 }

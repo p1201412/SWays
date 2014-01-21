@@ -18,12 +18,11 @@ pageEncoding="ISO-8859-1"%>
 <body>
 <div class="jumbotron">
     <center>
-    <h1>Welcome <sec:authentication property="principal.username" /></h1>
+    <h1>Welcome ${user.name} ${user.surname}</h1>
     <br/>
     Your are logged as user !<br/><br/>
-    <sec:authorize ifAnyGranted="ROLE_USER">
+    <a href="<c:url value="/user/updateUser/${user.id}/" />" ><button type="button" class="btn btn-danger btn-lg">Edit account</button></a><br/><br/>
         <a href="<c:url value="/j_spring_security_logout" />" ><button type="button" class="btn btn-danger btn-lg">Logout</button></a><br/><br/>
-    </sec:authorize>
     </center>
 </div>
 </body>
