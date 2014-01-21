@@ -74,6 +74,8 @@ public class UserDaoImpl implements UserDao
     //Affecter le mot de passe haché
     user.setPassword(hashedPassword);
         
+    //Image de base
+    user.setImg("https://github.com/patrickkettner/testswarm/diff_blob/6f18cedfdcd99d548d468f33c2ae4e06cf96cdd9/img/unknown.png?raw=true");
       Session session = sessionFactory.getCurrentSession();
       session.save(user);
       

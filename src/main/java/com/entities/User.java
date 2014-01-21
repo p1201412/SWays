@@ -37,11 +37,17 @@ public class User
     @Column(name="userPoints")
     private int points;
     
+    @Column(name="userImg")
+    private String img;
+    
     @Column(name="userMailAddress")
     private String mailAddress;
     
     @Transient
     private String confirmMailAddress;
+    
+    @Column(name="enabled")
+    private boolean enabled;
 
     public String getPseudo() {
         return pseudo;
@@ -92,6 +98,14 @@ public class User
         this.points = points;
     }
 
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
+
     public String getMailAddress() {
         return mailAddress;
     }
@@ -127,4 +141,14 @@ public class User
     {
         return name;
     }
+
+    public boolean getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+    
+    
 }

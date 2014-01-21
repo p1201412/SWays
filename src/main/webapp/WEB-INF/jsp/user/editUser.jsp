@@ -15,9 +15,19 @@
 <c:url var="backUrl" value="/user/index.html" />
 <h1>Update your account</h1>
 <c:url var="UpdateUserUrl" value="/user/updateUser/${user.id}/" />
+
+<c:if test="${not empty error}">
+		<div class="alert alert-danger">
+			Your edit attempt was not successful, try again.<br /> Caused by :
+			${error}
+		</div>
+	</c:if>
+<br />
+
 <form:form role="form" modelAttribute="user" method="POST" action="${UpdateUserUrl}">
 <form:input type="hidden" path="registrationDate" value="${user.registrationDate}"/>
 <form:input type="hidden" path="points" value="${user.points}"/>
+<form:input type="hidden" path="enabled" value="${user.enabled}"/>
 <div class="form-group">
 <form:label path="pseudo">Pseudo</form:label><br/>
     
@@ -43,6 +53,11 @@
 <div class="form-group">
 <form:label path="surname">Surname</form:label><br/>
 <form:input path="surname" />
+</div>
+
+<div class="form-group">
+<form:label path="img">Image</form:label><br/>
+<form:input path="img" />
 </div>
     
 <div class="form-group">    

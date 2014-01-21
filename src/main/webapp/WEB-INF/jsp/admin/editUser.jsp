@@ -13,9 +13,15 @@
     <center>
         
 <c:url var="viewUsrUrl" value="/admin/viewUser.html" />
+<h1>Update ${user.pseudo}'s account</h1>
+<c:if test="${not empty error}">
+		<div class="alert alert-danger">
+			Your edit attempt was not successful, try again.<br /> Caused by :
+			${error}
+		</div>
+	</c:if>
+<br />
 
-
-<h1>Update ${user.pseudo}</h1>
 <c:url var="UpdateUserUrl" value="/admin/updateUserByAdmin/${user.id}/" />
 <form:form role="form" modelAttribute="user" method="POST" action="${UpdateUserUrl}">
 <form:input type="hidden" path="registrationDate" value="${user.registrationDate}"/>
@@ -35,6 +41,11 @@
 <div class="form-group">
 <form:label path="surname">Surname</form:label><br/>
 <form:input path="surname" />
+</div>
+
+<div class="form-group">
+<form:label path="img">Image</form:label><br/>
+<form:input path="img" />
 </div>
     
 <div class="form-group">    

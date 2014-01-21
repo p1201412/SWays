@@ -20,11 +20,8 @@ pageEncoding="ISO-8859-1"%>
     <center>
     <h1>Welcome on SilentWays' website</h1>
     <br/>
-    <sec:authorize ifAnyGranted="ROLE_USER">
+    <sec:authorize ifAnyGranted="ROLE_USER, ROLE_ADMIN">
         <a href="user/index.html"><button type="button" class="btn btn-primary btn-lg">Enter</button></a><br/><br/>
-    </sec:authorize>
-    <sec:authorize ifAnyGranted="ROLE_ADMIN">
-        <a href="admin/index.html"><button type="button" class="btn btn-primary btn-lg">Enter</button></a><br/><br/>
     </sec:authorize>
     <sec:authorize ifNotGranted="ROLE_USER, ROLE_ADMIN">
     <a href="login.html"><button type="button" class="btn btn-success btn-lg">Sign up</button></a><br/><br/>

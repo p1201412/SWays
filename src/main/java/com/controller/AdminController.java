@@ -63,7 +63,7 @@ public class AdminController
     
     //MAJ d'utilisateur
     @RequestMapping(value="/updateUserByAdmin/{userId}/", method=RequestMethod.POST)
-    public String update(@ModelAttribute("user") User user, BindingResult result, @PathVariable Integer userId)
+    public ModelAndView update(@ModelAttribute("user") User user, BindingResult result, @PathVariable Integer userId)
     {
         //Utilisateur avec le meme id
         user.setId(userId);
@@ -80,14 +80,16 @@ public class AdminController
         if(msg.equals(""))
         {
             user.setId(userId);
-            userService.updateUser(user);
+            userService.updateUserByAdmin(user);
         }
         else
         {
-            throw new SpringException(msg);
+            ModelAndView mav = new ModelAndView("admin/editUser");
+            mav.addObject("error", msg);
+            return mav;
         }           
                            
-        return "redirect:/admin/viewUser.html";
+        return new ModelAndView("redirect:/admin/viewUser.html");
     }
    
 }

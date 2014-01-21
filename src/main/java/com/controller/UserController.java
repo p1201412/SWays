@@ -41,7 +41,7 @@ public class UserController
     
     //MAJ d'utilisateur
     @RequestMapping(value="/updateUser/{userId}/", method=RequestMethod.POST)
-    public String update(@ModelAttribute("user") User user, BindingResult result, @PathVariable Integer userId)
+    public ModelAndView update(@ModelAttribute("user") User user, BindingResult result, @PathVariable Integer userId)
     {
         //Utilisateur avec le meme id
         user.setId(userId);
@@ -62,9 +62,11 @@ public class UserController
         }
         else
         {
-            throw new SpringException(msg);
+            ModelAndView mav = new ModelAndView("user/editUser");
+            mav.addObject("error", msg);
+            return mav;
         }           
                            
-        return "redirect:/user/index.html";
+        return new ModelAndView("redirect:/user/index.html");
     }
 }

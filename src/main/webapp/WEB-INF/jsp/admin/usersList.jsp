@@ -35,6 +35,8 @@
 
 <th>Mail</th>
 
+<th>Img</th>
+
 <th>Actions</th>
 
 <th></th>
@@ -43,7 +45,8 @@
 
 <c:forEach items="${users}" var="user">
 
-<tr>
+    <c:if test="${user.enabled == true}"><tr></c:if>
+    <c:if test="${user.enabled == false}"><tr class="danger"></c:if>
 
 <th><c:out value="${user.id}"/></th>
 <th><c:out value="${user.pseudo}"/></th>
@@ -53,6 +56,7 @@
 <th><c:out value="${user.registrationDate}"/></th>
 <th><c:out value="${user.points}"/></th>
 <th><c:out value="${user.mailAddress}"/></th>
+<th><img width="35" height="35" alt="userIcon" src="${user.img}" class="img-thumbnail"/></th>
 
 <th><a href="deleteUser/${user.id}/"><button type="button" class="btn btn-default">Delete</button></a></th>
 
