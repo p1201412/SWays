@@ -11,6 +11,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -65,8 +66,17 @@ public class UserDaoImpl implements UserDao
   @Override
   public void addUser(User user)
   {
+     // pour hacher avec SHA1
+    ShaPasswordEncoder encoder = new ShaPasswordEncoder();
+    /// Hachage du mot de passe avec un gain de sel vari
+    String hashedPassword = encoder.encodePassword(user.getPassword(), user.getPseudo());
+    
+    //Affecter le mot de passe haché
+    user.setPassword(hashedPassword);
+        
       Session session = sessionFactory.getCurrentSession();
       session.save(user);
+      
 
       SQLQuery tempQuery = session.createSQLQuery("INSERT INTO user_role (userId, userRole) VALUES ("+user.getId()+", 'ROLE_USER')");
       tempQuery.executeUpdate();

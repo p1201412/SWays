@@ -72,6 +72,8 @@
 <security:http auto-config="true">
     <security:form-login login-page="/login" default-target-url="/index"
 			authentication-failure-url="/loginfailed" />
+    <security:intercept-url pattern = "/login" requires-channel = "https" />
+    <security:intercept-url pattern = "/singin" requires-channel = "https" />
     <security:intercept-url pattern="/user/**" access="ROLE_USER" />
     <security:intercept-url pattern="/admin/**" access="ROLE_ADMIN" />
     <security:intercept-url pattern="/login" access="IS_AUTHENTICATED_ANONYMOUSLY" />
@@ -81,11 +83,14 @@
 
 <security:authentication-manager>
     <security:authentication-provider>
-            <security:jdbc-user-service data-source-ref="myDataSource"
+        <security:password-encoder hash="sha">
+            <security:salt-source user-property="username"/>
+        </security:password-encoder>
+        <security:jdbc-user-service data-source-ref="myDataSource"
  
 		   users-by-username-query="
 		      select userPseudo,userPassword, enabled
-		      from user where userPseudo=?" 
+		      from user where userPseudo=? and enabled = 1" 
  
 		   authorities-by-username-query="
 		      select u.userPseudo, ur.userRole from user u, user_role ur 
@@ -94,7 +99,13 @@
     </security:authentication-provider>
 </security:authentication-manager>
 
-
-
+<bean id="messageSource"
+	class="org.springframework.context.support.ResourceBundleMessageSource">
+	<property name="basenames">
+	    <list>
+		<value>mymessages</value>
+	    </list>
+	</property>
+  </bean>
 
 </beans>
