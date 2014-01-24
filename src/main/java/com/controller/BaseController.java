@@ -3,8 +3,10 @@ package com.controller;
 import com.entities.User;
 import com.method.UserMethod;
 import com.service.UserService;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -12,6 +14,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -19,9 +23,48 @@ import org.springframework.web.servlet.ModelAndView;
 @SessionAttributes( {"userId"})
 public class BaseController 
 {
-    
+     
     @Autowired
     private UserService userService;
+    
+    
+    @RequestMapping(value = "/isPseudoExist", method = RequestMethod.GET)
+    @ResponseBody
+    public String isPseudoExist(HttpServletResponse response,
+            @RequestParam String pseudo) throws IOException {
+        if(userService.getUserByPseudo(pseudo)!=null)
+            return "This pseudo is already existing";
+        else
+            return "";
+    }
+    
+    @RequestMapping(value = "/isEmailExist", method = RequestMethod.GET)
+    public @ResponseBody String isEmailExist(@RequestParam String mail) 
+    {
+        if(userService.getUserByMail(mail)!=null)
+            return "This email is already existing";
+        else
+            return "";    
+    }
+        
+    @RequestMapping(value="/add", method = RequestMethod.GET)
+    public ModelAndView add() 
+    {
+        return new ModelAndView("anonymous/add");
+    }
+    
+    @RequestMapping(value="/add",method=RequestMethod.POST)
+    public @ResponseBody String addUser(@ModelAttribute(value="user") User user, BindingResult result ){
+        String returnText;
+        if(!result.hasErrors()){
+            userService.addUser(user);
+            returnText = "User has been added to the list. Total number of users are " + userService.userList().size();
+        }else{
+            returnText = "Sorry, an error has occur. User has not been added to list.";
+        }
+        return returnText;
+    }
+    
     
     //Index
     @RequestMapping(value="/index", method = RequestMethod.GET)
@@ -80,3 +123,4 @@ public class BaseController
         return new ModelAndView("anonymous/login");
   }
 }
+ 
