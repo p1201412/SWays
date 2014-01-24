@@ -28,6 +28,7 @@
                                 <button class="btn btn-default" type="reset">Reset</button>
 	</form>
                 
+                <a href="passForget.html">Password Forgotten</a>
                 <a href="index.html"><button class="btn btn-default">Return to Home</button></a>
 </center>
 </body>

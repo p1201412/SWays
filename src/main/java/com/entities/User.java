@@ -46,6 +46,10 @@ public class User
     @Transient
     private String confirmMailAddress;
     
+    @Transient
+    private String key;
+    
+    
     @Column(name="enabled")
     private boolean enabled;
 
@@ -149,6 +153,12 @@ public class User
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
     }
+    public String getKey(){
+        return key;
+    }
     
+    public void setKey(String key) {
+        this.key = key;
+    }
     
 }

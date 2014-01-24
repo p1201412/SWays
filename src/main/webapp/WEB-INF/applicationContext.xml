@@ -30,7 +30,7 @@
     <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
     <property name="url" value="jdbc:mysql://localhost:3306/mydb?zeroDateTimeBehavior=convertToNull"/>
     <property name="username" value="root"/>
-    <property name="password" value=""/>
+    <property name="password" value="root"/>
   </bean>
    
   <!-- Hibernate Session Factory -->
@@ -107,5 +107,20 @@
 	    </list>
 	</property>
   </bean>
+  
+  <!--Mail-->
+  <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+        <property name="javaMailProperties">
+            <props>
+                <prop key="mail.transport.protocole">smtp</prop>
+                <prop key="mail.smtp.auth">true</prop>
+                <prop key="mail.smtp.starttls.enable">true</prop>
+                <prop key="mail.smtp.host">smtp.gmail.com</prop>
+                <prop key="mail.smtp.port">587</prop>       
+            </props>
+        </property>
+        <property name="username" value="thimab@gmail.com" />
+        <property name="password" value="2CBZ1380" />
+    </bean>
 
 </beans>

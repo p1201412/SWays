@@ -58,7 +58,7 @@
 <th><c:out value="${user.mailAddress}"/></th>
 <th><img width="35" height="35" alt="userIcon" src="${user.img}" class="img-thumbnail"/></th>
 
-<th><a href="deleteUser/${user.id}/"><button type="button" class="btn btn-default">Delete</button></a></th>
+<th><a href="deleteUser/${user.id}/">Delete</a></th>
 
 <th><a href="updateUserByAdmin/${user.id}/"><button type="button" class="btn btn-default">Update</button></a></th>
 
