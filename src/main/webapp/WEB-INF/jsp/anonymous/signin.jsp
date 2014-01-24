@@ -1,11 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
         <title>Add Users using ajax</title>
         <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+        <link href="<c:url value="/resources/css/bootstrap.css" />" rel="stylesheet">
+        <script type="text/javascript" src="<c:url value="/resources/js/bootstrap.js" />"></script>
         <script type="text/javascript">
         function testPseudoExist(pseudo)
         {
@@ -110,12 +113,17 @@ pageEncoding="ISO-8859-1"%>
             str = testPseudoExist(pseudo);
             if(str!=="")
             {
-                $('#lblPseudo').html(str);
+                $('#pseudo').popover({
+                    title : 'Invalid :',
+                    content : str,
+                    delay: { show: 500, hide: 100 }
+                });
+                $('#pseudo').popover('show');
                 ok=false;
             }
             else
             {
-                $('#lblPseudo').html("");
+                $('#pseudo').popover('hide')
             }
             str = testEmailExist(mail1);
             if(str!=="")
@@ -144,8 +152,8 @@ pageEncoding="ISO-8859-1"%>
                 $.ajax
                 ({
                     type: "POST",
-                    url: "add.html",
-                    data: "pseudo=" + pseudo,
+                    url: "addUser.html",
+                    data : { pseudo : pseudo, password : pass1, name : name, surname : surname, mailAddress : mail1 },
                     success: function(response)
                     {
                         // we have the response
@@ -161,19 +169,23 @@ pageEncoding="ISO-8859-1"%>
         </script>
     </head>
     <body>
-        <h1>Sign In</h1>
-        <form id="sin">
-            <div id="lblTop"></div>
-            Pseudo : <input type="text" id="pseudo"><div id="lblPseudo"></div><br/>
-            Password : <input type="password" id="pass1"><div id="lblPassword"></div><br/>
-            Confirm password : <input type="password" id="pass2"><br/>
-            Name : <input type="text" id="name"><br/>
-            Surname : <input type="text" id="surname"></div><br/>
-            Email : <input type="text" id="mail1"><div id="lblMail"></div><br/>
-            Confirm Email : <input type="text" id="mail2"><div id="lblMail2"></div><br/>
-            <input type="button" value="Sign In" onclick="addUser()"><br/>
-            <div id="info"></div>
-        </form>
+        <center>
+            <h1>Sign In</h1>
+            <form id="sin">
+                <div id="lblTop"></div>
+                Pseudo : <br/>
+                <input type="text" id="pseudo"><br/><br/>
+                Password : <br/>
+                <input type="password" id="pass1"><br/>
+                Confirm password : <br/><input type="password" id="pass2"><br/>
+                Name : <br/><input type="text" id="name"><br/><br/>
+                Surname : <br/><input type="text" id="surname"></div><br/><br/>
+                Email : <br/><input type="text" id="mail1"><div id="lblMail"></div><br/><br/>
+                Confirm Email : <br/><input type="text" id="mail2"><div id="lblMail2"></div><br/><br/>
+                <input type="button" id="add" value="Sign In" onclick="addUser()"><br/>
+                <div id="info"></div>
 
+            </form>
+        </center>
     </body>
 </html>

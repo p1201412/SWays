@@ -46,21 +46,20 @@ public class BaseController
         else
             return "";    
     }
-        
-    @RequestMapping(value="/add", method = RequestMethod.GET)
-    public ModelAndView add() 
-    {
-        return new ModelAndView("anonymous/add");
-    }
+
     
-    @RequestMapping(value="/add",method=RequestMethod.POST)
+    @RequestMapping(value="/addUser",method=RequestMethod.POST)
     public @ResponseBody String addUser(@ModelAttribute(value="user") User user, BindingResult result ){
         String returnText;
         if(!result.hasErrors()){
+            Date date = new Date();
+            SimpleDateFormat dateFormat = new SimpleDateFormat ("dd/MM/yyyy");
+            String registrationDate = dateFormat.format(date);
+            user.setRegistrationDate(registrationDate);
             userService.addUser(user);
-            returnText = "User has been added to the list. Total number of users are " + userService.userList().size();
+            returnText = "Your sign in was successful, please check your email to enable your account";
         }else{
-            returnText = "Sorry, an error has occur. User has not been added to list.";
+            returnText = "Sorry, an error has occur...";
         }
         return returnText;
     }
