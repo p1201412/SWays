@@ -16,6 +16,8 @@ pageEncoding="ISO-8859-1"%>
 </head>
 
 <body>
+   
+
 <div class="jumbotron">
     <center>
     <h1>Welcome on SilentWays' website</h1>

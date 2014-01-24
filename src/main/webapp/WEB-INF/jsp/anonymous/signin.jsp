@@ -5,69 +5,23 @@ pageEncoding="ISO-8859-1"%>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-        <title>Add Users using ajax</title>
+        <title>SilentWays</title>
         <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-        <link href="<c:url value="/resources/css/bootstrap.css" />" rel="stylesheet">
-        <script type="text/javascript" src="<c:url value="/resources/js/bootstrap.js" />"></script>
+        <link href="<c:url value="/resources/css/bootstrap.css" />" rel="stylesheet">   
+        <script type="text/javascript" src="<c:url value="/resources/js/testForm.js" />"></script>
         <script type="text/javascript">
-        function testPseudoExist(pseudo)
-        {
-            var str = "";
-            $.ajax
-            ({
-                type: "GET",
-                async: false,
-                url: "isPseudoExist.html",
-                data: "pseudo=" + pseudo,
-                success: function(response)
-                {
-                    str=response;
-                },
-                error: function(e)
-                {
-                    return "Error from server" + e;
-                }
-            });
-            return str;
-        }
+            
+
+            $(document).ready(function() {
+                $('#bForm').hide();
+                $('#bPseudo').hide();
+                $('#bPass').hide();
+                $('#bMail').hide();
+                $('#bMail2').hide();
+                $('#bMail3').hide();
+                $('#info').hide();
+            });    
         
-              
-        function testEmailExist(mail)
-        {
-            var str = "";
-            $.ajax
-            ({
-                type: "GET",
-                async: false,
-                url: "isEmailExist.html",
-                data: "mail=" + mail,
-                success: function(response)
-                {
-                    str=response;
-                },
-                error: function(e)
-                {
-                    return "Error from server" + e;
-                }
-            });
-            return str;
-        }
-        
-        function testPasswords(p1,p2)
-        {
-            return p1===p2;
-        }
-        
-        function testEmails(e1,e2)
-        {
-            return e1===e2;
-        }
-        
-        function validateEmail(mail) 
-        { 
-            var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-            return re.test(mail);
-        } 
         
         function testForm(pseudo,pass1,pass2,name,surname,mail1,mail2)
         {
@@ -75,61 +29,66 @@ pageEncoding="ISO-8859-1"%>
             var str = "";
             if(!(pseudo&&pass1&&pass2&&name&&surname&&mail1&&mail2))
             {
-                $('#lblTop').html("Please complete all the form");
+                $('#bForm').html("Please complete all the form");
+                $('#bForm').show(500);
                 ok=false;
             }
             else
             {
-                $('#lblTop').html("");
+                $('#bForm').hide(500);
             }
                 
             if(!testPasswords(pass1,pass2))
             {
-                $('#lblPassword').html("Passwords don't match");
+                $('#bPass').html("Passwords dont match");
+                $('#bPass').show(500);
                 ok=false;
             }
             else
             {
-                $('#lblPassword').html("");
+                $('#bPass').hide(500);
             }
             if(!testEmails(mail1,mail2))
             {
-                $('#lblMail2').html("Emails don't match");
+                $('#bMail2').html("Emails dont match");
+                $('#bMail2').show(500);
                 ok=false;
             }
             else
             {
-                $('#lblMail2').html("");
+                $('#bMail2').hide(500);
             }
             if(!validateEmail(mail1))
             {
-                $('#lblMail').html("Email is not valid");
+                $('#bMail').html("Email is not valid");
+                $('#bMail').show(500);
                 ok=false;
             }
             else
             {
-                $('#lblMail').html("");
+                $('#bMail1').hide(500);
             }
             str = testPseudoExist(pseudo);
             if(str!=="")
             {
-                $('#pseudo').popover({
-                    title : 'Invalid :',
-                    content : str,
-                    delay: { show: 500, hide: 100 }
-                });
-                $('#pseudo').popover('show');
+                $('#bPseudo').html(str);
+                $('#bPseudo').show(500);
                 ok=false;
             }
             else
             {
-                $('#pseudo').popover('hide')
+                $('#bPseudo').hide(500);
             }
             str = testEmailExist(mail1);
             if(str!=="")
             {
-                $('#lblMail').html(str);
+                $('#bMail3').html(str);
+                $('#bMail3').show(500);
                 ok=false;
+            }
+            else
+            {
+                $('#bMail3').hide(500);
             }
             return ok;
         }
@@ -158,7 +117,9 @@ pageEncoding="ISO-8859-1"%>
                     {
                         // we have the response
                         $('#info').html(response);
+                        $('#info').show(700);
                         $('#pseudo').val('');
+                        $('#sin').hide(1000);
                     },
                     error: function(e){
                     alert('Error ' + e);
@@ -171,21 +132,34 @@ pageEncoding="ISO-8859-1"%>
     <body>
         <center>
             <h1>Sign In</h1>
+            <a href="index.html"><button type="button" class="btn btn-info">Home</button></a><br/><br/>
             <form id="sin">
                 <div id="lblTop"></div>
                 Pseudo : <br/>
                 <input type="text" id="pseudo"><br/><br/>
                 Password : <br/>
-                <input type="password" id="pass1"><br/>
-                Confirm password : <br/><input type="password" id="pass2"><br/>
-                Name : <br/><input type="text" id="name"><br/><br/>
-                Surname : <br/><input type="text" id="surname"></div><br/><br/>
-                Email : <br/><input type="text" id="mail1"><div id="lblMail"></div><br/><br/>
-                Confirm Email : <br/><input type="text" id="mail2"><div id="lblMail2"></div><br/><br/>
-                <input type="button" id="add" value="Sign In" onclick="addUser()"><br/>
-                <div id="info"></div>
-
+                <input type="password" id="pass1"><br/><br/>
+                Confirm password :  <br/>
+                <input type="password" id="pass2"><br/><br/>
+                Name : <br/>
+                <input type="text" id="name"><br/><br/>
+                Surname : <br/>
+                <input type="text" id="surname"><br/><br/>
+                Email :  <br/>
+                <input type="text" id="mail1"><br/><br/>
+                Confirm Email :  <br/>
+                <input type="text" id="mail2"><br/><br/>
+                <button type="button" id="add" class="btn btn-info" onclick="addUser()">Sign In</button><br/><br/><br/>
+                
+                <span id="bForm" class="alert alert-danger"></span>
+                <span id="bPseudo" class="alert alert-danger"></span>
+                <span id="bPass" class="alert alert-danger"></span>
+                <span id="bMail" class="alert alert-danger"></span>
+                <span id="bMail2" class="alert alert-danger"></span>
+                <span id="bMail3" class="alert alert-danger"></span>
             </form>
+            <span id="info" class="alert alert-success"></span>
+            
         </center>
     </body>
 </html>
