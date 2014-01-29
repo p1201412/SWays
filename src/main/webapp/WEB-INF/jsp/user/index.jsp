@@ -12,72 +12,48 @@ pageEncoding="ISO-8859-1"%>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
 <title>Silent Ways</title>
-<link href="<c:url value="/resources/css/bootstrap.css" />" rel="stylesheet">
+<link href="<c:url value="/resources/css/style.css" />" rel="stylesheet">
+<link href="<c:url value="/resources/css/menu.css" />" rel="stylesheet">
+<script src="<c:url value="/resources/js/modernizr.custom.25376.js" />"></script>
 <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-<script src="<c:url value="/resources/js/bootstrap.js" />"></script>
-
 </head>
 
 <body>
-    
-     <nav class="navbar navbar-default" role="navigation">
-  <!-- Brand and toggle get grouped for better mobile display -->
-  <div class="navbar-header">
-    <a class="navbar-brand" href="user/index.html">SilentWays</a>
-  </div>
-
-  <!-- Collect the nav links, forms, and other content for toggling -->
-  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-    <ul class="nav navbar-nav">
-      <li class="active"><a href="#">Home</a></li>
-      <li><a href="#">Forum</a></li>
-      <li><a href="#">Games</a></li>
-      <li><a href="#">Tutorials</a></li>
-    </ul>
-    
-    <ul class="nav navbar-nav navbar-right">
-      <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Account <b class="caret"></b></a>
-        <ul class="dropdown-menu">
-            <li><a href="#">View account</a></li>
-            <li><a href="<c:url value="/user/updateUser/${user.id}/" />">Edit account</a></li>
-            <li class="divider"></li>
-            <li><a href="<c:url value="/j_spring_security_logout" />">Logout</a></li>
-        </ul>
-      </li>
-    </ul>
-      <sec:authorize ifAnyGranted="ROLE_ADMIN">
-        <ul class="nav navbar-nav navbar-right">
-           <li class="dropdown">
-             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Administration <b class="caret"></b></a>
-             <ul class="dropdown-menu">
-                 <li><a href="#">Manage users</a></li>
-                 <li><a href="#">Manage forum</a></li>
-                 <li><a href="#">Manage games</a></li>
-                 <li><a href="#">Manage tutorials</a></li>
-             </ul>
-           </li>
-         </ul>
-    </sec:authorize>
-  </div><!-- /.navbar-collapse -->
-</nav>
-    
-<div class="jumbotron">
-    <center>
-        <img width="200" height="200" src="${user.img}" alt="userIcon" class="img-thumbnail"/>
-    <h1>Welcome ${user.name} ${user.surname}</h1>
-    <br/>
-    <sec:authorize ifAnyGranted="ROLE_USER">
-        Your are logged as user !<br/><br/>
-    </sec:authorize>
-    <sec:authorize ifAnyGranted="ROLE_ADMIN">
-        Your are logged as admin !<br/><br/>
-        <a href="../admin/viewUser.html"><button type="button" class="btn btn-primary btn-lg">Go into admin's part</button></a><br/><br/>
-    </sec:authorize>
-    <a href="<c:url value="/user/updateUser/${user.id}/" />" ><button type="button" class="btn btn-danger btn-lg">Edit account</button></a><br/><br/>
-        <a href="<c:url value="/j_spring_security_logout" />" ><button type="button" class="btn btn-danger btn-lg">Logout</button></a><br/><br/>
-    </center>
+<div id="perspective" class="perspective effect-moveleft">
+    <div class="container">
+        <div class="wrapper"><!-- wrapper needed for scroll -->
+            <div class="main clearfix">     
+                <center>
+                    <p><button id="showMenu">Menu</button></p>
+                    <img width="200" height="200" src="${user.img}" alt="userIcon" class="img-thumbnail"/>
+                <h1>Welcome ${user.name} ${user.surname}</h1>
+                <br/>
+                <sec:authorize ifAnyGranted="ROLE_USER">
+                    Your are logged as user !<br/>
+                </sec:authorize>
+                <sec:authorize ifAnyGranted="ROLE_ADMIN">
+                    Your are logged as admin !<br/>
+                </sec:authorize>
+                    You have ${user.points} points
+                </center>
+                </div><!-- /main -->
+                    </div><!-- wrapper -->
+            </div><!-- /container -->
+            <nav class="outer-nav right vertical">
+                <img style="margin-left: -70px; margin-bottom: 30px;" src="<c:url value="/resources/img/head.png" />"/>
+                <sec:authorize ifAnyGranted="ROLE_USER, ROLE_ADMIN">
+                    <a href="../index.html" class="icon-home">Home</a>
+                    <a href="#" class="icon-news">Tutorials</a>
+                    <a href="#" class="icon-star">Games</a>
+                    <sec:authorize ifAnyGranted="ROLE_ADMIN">
+                        <a href="../admin/viewUser.html" class="icon-upload">Administration</a>
+                    </sec:authorize>
+                    <a href="<c:url value="/j_spring_security_logout" />" class="icon-lock">Logout</a>
+                </sec:authorize>
+            </nav> 
 </div>
+<script src="<c:url value="/resources/js/menu.js" />"></script>
+<script src="<c:url value="/resources/js/classie.js" />"></script>
 </body>
 
 </html>
