@@ -83,7 +83,7 @@ public class BaseController
             
             
             returnText = "Your sign in was successful, please check your email to enable your account";
-        } else {
+        }else{
             returnText = "Sorry, an error has occur...";
         }
         return returnText;
@@ -174,7 +174,7 @@ public class BaseController
             user = userService.getUser(user.getId());
             user.setEnabled(true);
             userService.updateUserByAdmin(user);
-            
+            generatedLinkService.delete(linkGen);
             ModelAndView mav = new ModelAndView("redirect:/login.html");
             return mav;
         }

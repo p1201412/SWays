@@ -46,7 +46,7 @@ pageEncoding="ISO-8859-1"%>
                 <sec:authorize ifAnyGranted="ROLE_USER, ROLE_ADMIN">
                     <a href="../index.html" class="icon-home">Home</a>
                     <a href="#" class="icon-news">Tutorials</a>
-                    <a href="#" class="icon-star">Games</a>
+                    <a href="games/index" class="icon-star">Games</a>
                     <sec:authorize ifAnyGranted="ROLE_ADMIN">
                         <a href="../admin/viewUser.html" class="icon-upload">Administration</a>
                     </sec:authorize>

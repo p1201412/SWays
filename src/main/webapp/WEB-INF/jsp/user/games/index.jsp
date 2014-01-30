@@ -28,7 +28,9 @@ pageEncoding="ISO-8859-1"%>
                     <img width="200" height="200" src="${user.img}" alt="userIcon" class="img-thumbnail"/>
                 <h1>Welcome ${user.name} ${user.surname}</h1>
                 
-                    <a href="<c:url value="/user/games/piano"/>">Piano</a>
+                    <a href="<c:url value="/user/games/keyboard"/>">Keyboard</a>
+                    <br/>
+                    <a href="<c:url value="/user/games/mcq"/>">MCQ</a>
                 </center>
                 </div><!-- /main -->
                     </div><!-- wrapper -->
@@ -40,7 +42,7 @@ pageEncoding="ISO-8859-1"%>
                     <a href="#" class="icon-news">Tutorials</a>
                     <a href="<c:url value="/user/index"/>" class="icon-star">Account</a>
                     <sec:authorize ifAnyGranted="ROLE_ADMIN">
-                        <a href="../admin/viewUser.html" class="icon-upload">Administration</a>
+                        <a href="../../admin/viewUser" class="icon-upload">Administration</a>
                     </sec:authorize>
                     <a href="<c:url value="/j_spring_security_logout" />" class="icon-lock">Logout</a>
                 </sec:authorize>
