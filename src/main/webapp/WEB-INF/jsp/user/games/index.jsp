@@ -28,15 +28,7 @@ pageEncoding="ISO-8859-1"%>
                     <img width="200" height="200" src="${user.img}" alt="userIcon" class="img-thumbnail"/>
                 <h1>Welcome ${user.name} ${user.surname}</h1>
                 
-                <sec:authorize ifAnyGranted="ROLE_USER">
-                    Your are logged as user !<br/>
-                </sec:authorize>
-                <sec:authorize ifAnyGranted="ROLE_ADMIN">
-                    Your are logged as admin !<br/>
-                </sec:authorize>
-                    You have ${user.points} points
-                    <br/><br/>
-                    <a href="<c:url value="/user/updateUser"/>">Edit your account</a>
+                    <a href="<c:url value="/user/games/piano"/>">Piano</a>
                 </center>
                 </div><!-- /main -->
                     </div><!-- wrapper -->
@@ -46,7 +38,7 @@ pageEncoding="ISO-8859-1"%>
                 <sec:authorize ifAnyGranted="ROLE_USER, ROLE_ADMIN">
                     <a href="../index.html" class="icon-home">Home</a>
                     <a href="#" class="icon-news">Tutorials</a>
-                    <a href="#" class="icon-star">Games</a>
+                    <a href="<c:url value="/user/index"/>" class="icon-star">Account</a>
                     <sec:authorize ifAnyGranted="ROLE_ADMIN">
                         <a href="../admin/viewUser.html" class="icon-upload">Administration</a>
                     </sec:authorize>

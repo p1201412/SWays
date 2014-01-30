@@ -7,7 +7,9 @@ pageEncoding="ISO-8859-1"%>
         <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
         <title>SilentWays</title>
         <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-        <link href="<c:url value="/resources/css/bootstrap.css" />" rel="stylesheet">   
+        <link href="<c:url value="/resources/css/style.css" />" rel="stylesheet">
+        <link href="<c:url value="/resources/css/menu.css" />" rel="stylesheet">
+        <script src="<c:url value="/resources/js/modernizr.custom.25376.js" />"></script>
         <script type="text/javascript" src="<c:url value="/resources/js/testForm.js" />"></script>
         <script type="text/javascript">
             
@@ -122,7 +124,7 @@ pageEncoding="ISO-8859-1"%>
                         $('#sin').hide(1000);
                     },
                     error: function(e){
-                    alert('Error ' + e);
+                    alert('Erroree ' + e);
                     }
                 });
             }  
@@ -130,36 +132,52 @@ pageEncoding="ISO-8859-1"%>
         </script>
     </head>
     <body>
-        <center>
-            <h1>Sign In</h1>
-            <a href="index.html"><button type="button" class="btn btn-info">Home</button></a><br/><br/>
-            <form id="sin">
-                <div id="lblTop"></div>
-                Pseudo : <br/>
-                <input type="text" id="pseudo"><br/><br/>
-                Password : <br/>
-                <input type="password" id="pass1"><br/><br/>
-                Confirm password :  <br/>
-                <input type="password" id="pass2"><br/><br/>
-                Name : <br/>
-                <input type="text" id="name"><br/><br/>
-                Surname : <br/>
-                <input type="text" id="surname"><br/><br/>
-                Email :  <br/>
-                <input type="text" id="mail1"><br/><br/>
-                Confirm Email :  <br/>
-                <input type="text" id="mail2"><br/><br/>
-                <button type="button" id="add" class="btn btn-info" onclick="addUser()">Sign In</button><br/><br/><br/>
-                
-                <span id="bForm" class="alert alert-danger"></span>
-                <span id="bPseudo" class="alert alert-danger"></span>
-                <span id="bPass" class="alert alert-danger"></span>
-                <span id="bMail" class="alert alert-danger"></span>
-                <span id="bMail2" class="alert alert-danger"></span>
-                <span id="bMail3" class="alert alert-danger"></span>
-            </form>
-            <span id="info" class="alert alert-success"></span>
-            
-        </center>
-    </body>
+<div id="perspective" class="perspective effect-moveleft">
+    <div class="container">
+        <div class="wrapper"><!-- wrapper needed for scroll -->
+            <div class="main clearfix">
+                <p><button id="showMenu">Menu</button></p>
+                    <center>
+                        <h1>Sign In</h1>
+                        <form id="sin">
+                            <div id="lblTop"></div>
+                            Pseudo : <br/>
+                            <input type="text" id="pseudo"><br/><br/>
+                            Password : <br/>
+                            <input type="password" id="pass1"><br/><br/>
+                            Confirm password :  <br/>
+                            <input type="password" id="pass2"><br/><br/>
+                            Name : <br/>
+                            <input type="text" id="name"><br/><br/>
+                            Surname : <br/>
+                            <input type="text" id="surname"><br/><br/>
+                            Email :  <br/>
+                            <input type="text" id="mail1"><br/><br/>
+                            Confirm Email :  <br/>
+                            <input type="text" id="mail2"><br/><br/>
+                            <button type="button" id="add" class="btn btn-success" onclick="addUser()">Sign In</button><br/><br/><br/>
+                            <div class="alerts">
+                            <span id="bForm" class="alert"></span>
+                            <span id="bPseudo" class="alert"></span>
+                            <span id="bPass" class="alert"></span>
+                            <span id="bMail" class="alert"></span>
+                            <span id="bMail2" class="alert"></span>
+                            <span id="bMail3" class="alert"></span>
+                            </div>
+                        </form>
+                        <span id="info" class="alert"></span>
+
+                    </center>
+                </div><!-- /main -->
+            </div><!-- wrapper -->
+        </div><!-- /container -->
+        <nav class="outer-nav right vertical">
+            <img style="margin-left: -70px; margin-bottom: 30px;" src="<c:url value="/resources/img/head.png" />"/>
+                <a href="index.html" class="icon-home">Home</a>
+                <a href="login.html" class="icon-lock">Login</a>
+        </nav>
+    </div>
+    <script src="<c:url value="/resources/js/menu.js" />"></script>
+    <script src="<c:url value="/resources/js/classie.js" />"></script>
+</body>
 </html>

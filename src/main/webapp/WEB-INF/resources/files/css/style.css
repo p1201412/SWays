@@ -1,0 +1,152 @@
+@import url(http://fonts.googleapis.com/css?family=Lato:300,400,700);
+
+*, *:after, *:before { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
+
+body {
+	background: #ddd;
+	color: #5a5350;
+	font-weight: 300;
+	font-family: 'Lato', Calibri, Arial, sans-serif;
+	overflow-y: scroll;
+	overflow-x: hidden;
+        font-size:15pt;
+}
+
+a {
+	text-decoration: none;
+	color: #ed8151;
+	outline: none;
+}
+
+a:hover, a:focus {
+	color: #e86a32;
+	outline: none;
+}
+
+/* Clearfix hack by Nicolas Gallagher: http://nicolasgallagher.com/micro-clearfix-hack/ */
+.clearfix:before,
+.clearfix:after {
+	display: table;
+	content: " ";
+}
+
+.clearfix:after {
+	clear: both;
+}
+
+
+
+.main {
+	max-width: 69em;
+	margin: 0 auto;
+}
+
+.wrapper p{
+    font-size:25pt;
+}
+
+.column {
+	float: left;
+	width: 50%;
+	padding: 0 2em;
+	min-height: 300px;
+	position: relative;
+	text-align: right;
+}
+
+.column:nth-child(2) {
+	box-shadow: -1px 0 0 rgba(0,0,0,0.1);
+	text-align: left;
+}
+
+.column p {
+	font-weight: 300;
+	font-size: 15pt;
+	padding: 0 0 0.5em;
+	margin: 0;
+	line-height: 1.5;
+}
+
+button {
+	border: none;
+	padding: 0.6em 1.2em;
+	background: #ed8151;
+	color: #fff;
+	font-family: 'Lato', Calibri, Arial, sans-serif;
+	font-size: 1em;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	cursor: pointer;
+	display: inline-block;
+	margin: 10px;
+	border-radius: 2px;
+	font-weight: 400;
+	outline: none;
+        font-size: 12pt;
+}
+
+
+
+button[disabled] {
+	
+	background: #a9a9a9;
+}
+
+button[disabled]:hover,
+button[disabled]:active {
+    background: #a9a9a9;
+}
+
+button:hover,
+button:active {
+	background: #e86a32;
+}
+
+.related {
+	text-align: center;
+	font-size: 1.5em;
+	margin-top: 3em;
+	clear: both;
+	padding: 3em 0;
+}
+
+.related a {
+	font-weight: 700;
+	font-size: 0.9em;
+}
+
+.toCenter
+{
+    margin-top: 25%;
+    //top: 50%;
+}
+
+span.alert {
+      width: 100px;
+      height: 20px;
+      line-height: 20px;
+      padding: 6px;
+      font-size: 16px;
+      text-align: center;
+      color: rgb(255, 0, 0);
+      background: rgb(255, 255, 255);
+      border: 4px solid rgb(255, 255, 255);
+      border-radius: 5px;
+      text-shadow: rgba(0, 0, 0, 0.1) 1px 1px 1px;
+      box-shadow: rgba(0, 0, 0, 0.1) 1px 1px 2px 0px;
+}
+
+.infoUser
+{
+    position: absolute;
+    top : -25px;
+    left : 3px;
+    margin-top: 0;
+    margin-right: 12px;
+}
+
+.infoUser img
+{
+   width: 100px;
+   box-shadow: 1px 1px 12px #555;
+}
