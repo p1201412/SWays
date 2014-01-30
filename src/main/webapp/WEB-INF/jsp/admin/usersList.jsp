@@ -3,115 +3,98 @@
 
 <html>
 
-<head>
+    <head>
 
-<title>All Users</title>
-<link href="<c:url value="/resources/css/bootstrap.css" />" rel="stylesheet">
-<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-<script src="<c:url value="/resources/js/bootstrap.js" />"></script>
-</head>
+        <title>Silent Ways</title>
+        <link href="<c:url value="/resources/css/style.css" />" rel="stylesheet">
+        <link href="<c:url value="/resources/css/menu.css" />" rel="stylesheet">
+        <script src="<c:url value="/resources/js/modernizr.custom.25376.js" />"></script>
+        <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    </head>
 
-<body>
-<center>
-         <nav class="navbar navbar-default" role="navigation">
-  <!-- Brand and toggle get grouped for better mobile display -->
-  <div class="navbar-header">
-    <a class="navbar-brand" href="user/index.html">SilentWays</a>
-  </div>
+    <body>
+        <div id="perspective" class="perspective effect-moveleft">
+            <div class="container">
+                <div class="wrapper"><!-- wrapper needed for scroll -->
+                    <div class="main clearfix">     
+                        <center>
+                            <p><button id="showMenu">Menu</button></p>
 
-  <!-- Collect the nav links, forms, and other content for toggling -->
-  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-    <ul class="nav navbar-nav">
-        <li><a href="../index.html">Home</a></li>
-      <li><a href="#">Forum</a></li>
-      <li><a href="#">Games</a></li>
-      <li><a href="#">Tutorials</a></li>
-    </ul>
-    
-    <ul class="nav navbar-nav navbar-right">
-      <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Account <b class="caret"></b></a>
-        <ul class="dropdown-menu">
-            <li><a href="../user/index.html">View account</a></li>
-            <li><a href="<c:url value="/user/updateUser" />">Edit account</a></li>
-            <li class="divider"></li>
-            <li><a href="<c:url value="/j_spring_security_logout" />">Logout</a></li>
-        </ul>
-      </li>
-    </ul>
-      <sec:authorize ifAnyGranted="ROLE_ADMIN">
-        <ul class="nav navbar-nav navbar-right">
-           <li class="dropdown">
-             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Administration <b class="caret"></b></a>
-             <ul class="dropdown-menu">
-                 <li><a href="#">Manage forum</a></li>
-                 <li><a href="#">Manage games</a></li>
-                 <li><a href="#">Manage tutorials</a></li>
-             </ul>
-           </li>
-         </ul>
-    </sec:authorize>
-  </div><!-- /.navbar-collapse -->
-</nav>
-        <h1>List of Users</h1><br/>
+                            <h1>List of Users</h1><br/>
 
-<c:if test="${!empty users}">
+                            <c:if test="${!empty users}">
 
-<table class="table table-hover">
+                                <table class="table table-hover">
 
-<tr>
+                                    <tr>
 
-<th>ID</th>
+                                        <th>ID</th>
 
-<th>Pseudo</th>
+                                        <th>Pseudo</th>
 
-<th>Pass</th>
+                                        <th>Pass</th>
 
-<th>Name</th>
+                                        <th>Name</th>
 
-<th>Surname</th>
+                                        <th>Surname</th>
 
-<th>Registration Date</th>
+                                        <th>Registration Date</th>
 
-<th>Points</th>
+                                        <th>Points</th>
 
-<th>Mail</th>
+                                        <th>Mail</th>
 
-<th>Img</th>
+                                        <th>Img</th>
 
-<th>Actions</th>
+                                        <th>Actions</th>
 
-<th></th>
+                                        <th></th>
 
-</tr>
+                                    </tr>
 
-<c:forEach items="${users}" var="user">
+                                    <c:forEach items="${users}" var="user">
 
-    <c:if test="${user.enabled == true}"><tr></c:if>
-    <c:if test="${user.enabled == false}"><tr class="danger"></c:if>
+                                        <c:if test="${user.enabled == true}"><tr></c:if>
+                                        <c:if test="${user.enabled == false}"><tr class="danger"></c:if>
 
-<th><c:out value="${user.id}"/></th>
-<th><c:out value="${user.pseudo}"/></th>
-<th><c:out value="${user.password}"/></th>
-<th><c:out value="${user.name}"/></th>
-<th><c:out value="${user.surname}"/></th>
-<th><c:out value="${user.registrationDate}"/></th>
-<th><c:out value="${user.points}"/></th>
-<th><c:out value="${user.mailAddress}"/></th>
-<th><img width="35" height="35" alt="userIcon" src="${user.img}" class="img-thumbnail"/></th>
+                                                <th><c:out value="${user.id}"/></th>
+                                            <th><c:out value="${user.pseudo}"/></th>
+                                            <th><c:out value="${user.password}"/></th>
+                                            <th><c:out value="${user.name}"/></th>
+                                            <th><c:out value="${user.surname}"/></th>
+                                            <th><c:out value="${user.registrationDate}"/></th>
+                                            <th><c:out value="${user.points}"/></th>
+                                            <th><c:out value="${user.mailAddress}"/></th>
+                                            <th><img width="35" height="35" alt="userIcon" src="${user.img}" class="img-thumbnail"/></th>
 
-<th><a href="deleteUser/${user.id}/"><button type="button" class="btn btn-default">Delete</button></a></th>
+                                            <th><a href="deleteUser/${user.id}/"><button type="button" class="btn btn-default">Delete</button></a></th>
 
-<th><a href="updateUserByAdmin/${user.id}/"><button type="button" class="btn btn-default">Update</button></a></th>
+                                            <th><a href="updateUserByAdmin/${user.id}/"><button type="button" class="btn btn-default">Update</button></a></th>
 
-</tr>
+                                        </tr>
 
-</c:forEach>
+                                    </c:forEach>
 
-</table>
+                                </table>
 
-</c:if>
-</center>
-</body>
+                            </c:if>
+                        </center>
+                    </div><!-- /main -->
+                </div><!-- wrapper -->
+            </div><!-- /container -->
+            <nav class="outer-nav right vertical">
+                <img style="margin-left: -70px; margin-bottom: 30px;" src="<c:url value="/resources/img/head.png" />"/>
+                <sec:authorize ifAnyGranted="ROLE_USER, ROLE_ADMIN">
+                    <a href="../index.html" class="icon-home">Home</a>
+                    <a href="#" class="icon-news">Tutorials</a>
+                    <a href="<c:url value="../user/index"/>" class="icon-star">Account</a>
+                    <a href="../user/games/index.html" class="icon-star">Games</a>
+                    <a href="<c:url value="/j_spring_security_logout" />" class="icon-lock">Logout</a>
+                </sec:authorize>
+            </nav> 
+        </div>
+        <script src="<c:url value="/resources/js/menu.js" />"></script>
+        <script src="<c:url value="/resources/js/classie.js" />"></script>
+    </body>
 
 </html>
