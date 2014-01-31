@@ -42,7 +42,7 @@ pageEncoding="ISO-8859-1"%>
                 <img style="margin-left: -70px; margin-bottom: 30px;" src="<c:url value="/resources/img/head.png" />"/>
                 <sec:authorize ifAnyGranted="ROLE_USER, ROLE_ADMIN">
                     <a href="index.html" class="icon-home">Home</a>
-                    <a href="#" class="icon-news">Tutorials</a>
+                    <a href="admin/viewTuto.html" class="icon-news">Tutorials</a>
                     <a href="user/games/index.html" class="icon-star">Games</a>
                     <a href="user/index.html" class="icon-upload">Account</a>
                     <sec:authorize ifAnyGranted="ROLE_ADMIN">

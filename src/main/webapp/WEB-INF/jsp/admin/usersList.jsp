@@ -25,39 +25,25 @@
                             <c:if test="${!empty users}">
 
                                 <table class="table table-hover">
-
-                                    <tr>
-
-                                        <th>ID</th>
-
-                                        <th>Pseudo</th>
-
-                                        <th>Pass</th>
-
-                                        <th>Name</th>
-
-                                        <th>Surname</th>
-
-                                        <th>Registration Date</th>
-
-                                        <th>Points</th>
-
-                                        <th>Mail</th>
-
-                                        <th>Img</th>
-
-                                        <th>Actions</th>
-
-                                        <th></th>
-
-                                    </tr>
+                                  
+                                        <th><b>ID</b></th>
+                                        <th><b>Pseudo</b></th>
+                                        <th><b>Pass</b></th>
+                                        <th><b>Name</b></th>
+                                        <th><b>Surname</b></th>
+                                        <th><b>Registration Date</b></th>
+                                        <th><b>Points</b></th>
+                                        <th><b>Mail</b></th>
+                                        <th><b>Img</b></th>
+                                        <th><b>Actions</b></th>
+                                  
 
                                     <c:forEach items="${users}" var="user">
 
                                         <c:if test="${user.enabled == true}"><tr></c:if>
                                         <c:if test="${user.enabled == false}"><tr class="danger"></c:if>
-
-                                                <th><c:out value="${user.id}"/></th>
+                                       
+                                            <th><c:out value="${user.id}"/></th>
                                             <th><c:out value="${user.pseudo}"/></th>
                                             <th><c:out value="${user.password}"/></th>
                                             <th><c:out value="${user.name}"/></th>
@@ -65,8 +51,8 @@
                                             <th><c:out value="${user.registrationDate}"/></th>
                                             <th><c:out value="${user.points}"/></th>
                                             <th><c:out value="${user.mailAddress}"/></th>
-                                            <th><img width="35" height="35" alt="userIcon" src="${user.img}" class="img-thumbnail"/></th>
-
+                                            <th><img width="40" height="40" alt="userIcon" src="${user.img}" class="img-thumbnail"/></th>
+                                        
                                             <th><a href="deleteUser/${user.id}/"><button type="button" class="btn btn-default">Delete</button></a></th>
 
                                             <th><a href="updateUserByAdmin/${user.id}/"><button type="button" class="btn btn-default">Update</button></a></th>
@@ -86,7 +72,7 @@
                 <img style="margin-left: -70px; margin-bottom: 30px;" src="<c:url value="/resources/img/head.png" />"/>
                 <sec:authorize ifAnyGranted="ROLE_USER, ROLE_ADMIN">
                     <a href="../index.html" class="icon-home">Home</a>
-                    <a href="#" class="icon-news">Tutorials</a>
+                    <a href="../admin/viewTuto.html" class="icon-news">Tutorials</a>
                     <a href="<c:url value="../user/index"/>" class="icon-star">Account</a>
                     <a href="../user/games/index.html" class="icon-star">Games</a>
                     <a href="<c:url value="/j_spring_security_logout" />" class="icon-lock">Logout</a>

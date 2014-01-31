@@ -1,7 +1,5 @@
 package com.dao;
 
-import com.entities.EmailSender;
-import com.entities.User;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import org.springframework.beans.factory.annotation.Autowired;

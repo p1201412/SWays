@@ -49,9 +49,12 @@ public class GameController
         return "user/games/qcm";
     }
     @RequestMapping(value="/index", method = RequestMethod.GET)
-    public ModelAndView index() 
+    public ModelAndView index(Principal principal) 
     {
-        return new ModelAndView("user/games/index");
+        User user = userService.getUserByPseudo(principal.getName());
+        ModelAndView mav = new ModelAndView("user/games/index");
+        mav.addObject("user", user);
+        return mav;
     }
 
     

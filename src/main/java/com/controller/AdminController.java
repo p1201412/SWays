@@ -1,14 +1,12 @@
 package com.controller;
 
 import com.entities.User;
-import com.exception.SpringException;
 import com.method.UserMethod;
+import com.service.TutorialService;
 import com.service.UserService;
 import java.security.Principal;
-import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -24,6 +22,9 @@ public class AdminController
 {
     @Autowired
     private UserService userService;
+    
+    @Autowired
+    private TutorialService tutoService;
 
     @RequestMapping(value="/index", method = RequestMethod.GET)
     public ModelAndView index() 
@@ -50,6 +51,14 @@ public class AdminController
     {
         userService.deleteUser(userId);
         return "redirect:/admin/viewUser.html";
+    }
+    
+    //Suppression d'un tutoriel
+    @RequestMapping(value="/deleteTuto/{tutoId}/")
+    public String deleteTuto(@PathVariable Integer tutoId) 
+    {
+        tutoService.deleteTutorial(tutoId);
+        return "redirect:/admin/viewTuto.html";
     }
     
     //Formulaire de MAJ d'utilisateur
@@ -91,5 +100,7 @@ public class AdminController
                            
         return new ModelAndView("redirect:/admin/viewUser.html");
     }
+    
+
    
 }

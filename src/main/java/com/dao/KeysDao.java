@@ -2,7 +2,6 @@ package com.dao;
 
 import com.entities.Keys;
 
-import java.util.List;
 
 public interface KeysDao 
 {

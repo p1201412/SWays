@@ -1,7 +1,6 @@
 package com.dao;
 
 import com.entities.GeneratedLink;
-import com.entities.User;
 import org.hibernate.Query;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
