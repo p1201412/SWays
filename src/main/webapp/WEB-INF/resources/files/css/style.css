@@ -3,6 +3,7 @@
 *, *:after, *:before { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
 
 body {
+        margin:0;
 	background: #ddd;
 	color: #5a5350;
 	font-weight: 300;
